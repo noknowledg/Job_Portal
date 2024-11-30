@@ -1,0 +1,171 @@
+<head>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(120deg, #364356 0%, #583987 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  width: calc(33.33% - 20px);
+  margin: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  float: left;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  background: #f8f9fa;
+}
+
+.card h2 {
+  color: #40577a;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.card p {
+  color: #666;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Clear the float */
+.container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Admin card specific styling */
+.card:last-child {
+  background: #2b4162;
+}
+
+.card:last-child h2,
+.card:last-child p {
+  color: white;
+}
+
+.card:last-child:hover {
+  background: #355585;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .card {
+    width: calc(50% - 20px);
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: calc(100% - 20px);
+    margin: 10px;
+  }
+  
+  .container {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+}
+
+/* Add hover effect on cards */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  /* opacity: 1; */
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+}
+
+/* Add slight bounce on click */
+.card:active {
+  transform: scale(0.98);
+}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>What would you want to be registered as?</h1>
+    <div class="card" onclick="selectRole('Company')">
+      <h2>Register as Company</h2>
+      <p>For companies looking to post jobs</p>
+    </div>
+    <div class="card" onclick="selectRole('candidates')">
+      <h2>Register as Candidate</h2>
+      <p>For job seekers</p>
+    </div>
+  <!-- </div> -->
+  <div class="card" onclick="selectRole('admin')">
+    <h2>Register as admin</h2>
+    <p>For admin</p>
+  </div>
+</div>
+
+
+
+  <script>
+    function selectRole(role) {
+      localStorage.setItem('selectedRole', role);
+      window.location.href = `${role.toLowerCase()}/register`;
+    }
+  </script>
+</body>
+</html>
