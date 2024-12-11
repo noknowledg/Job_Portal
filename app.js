@@ -2,8 +2,7 @@ const express = require('express');
 const app = express();
 const port  = process.env.PORT|| 3000;
 const path = require("path")
-// const jwt = require('jsonwebtoken');
-// const cloudinary = require('cloudinary').v2; // for storing the media
+
 const upload = require("./utils/multer");
 const bodyParser = require('body-parser');
 
@@ -14,27 +13,15 @@ const cookieParser = require('cookie-parser');
 const userRoutes = require('./routes/userRoutes');
 const jobRoutes = require('./routes/jobRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
-// const {RegisterUser, LoginUser} = require('./controllers/userController')
-// const errorMiddleware = require('./middleware/error');
-// const auth = require("./middleware/auth");
-// app.get('/',(req,res)=>{
-//   res.render('welcomepage');
-// })
-// app.get('/login',(req,res)=>{
-//   res.render('login');
-// })
-// app.get('/register',(req,res)=>{
-//   res.render('register');
-// })
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-// app.use('/userRoutes', userRoutes);
-// okieparser is required for providing authorization .... 
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended:true}));
-app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/jobRoutes',jobRoutes);
   
 
@@ -42,7 +29,7 @@ app.use(express.static(path.join(__dirname,'public')))
   // connecting with front end
  
   
-app.use(userRoutes);
+
 
 app.use('/',userRoutes);
 app.use('/',jobRoutes);

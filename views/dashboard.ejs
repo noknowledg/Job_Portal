@@ -84,12 +84,25 @@ body {
   <div class="navbar">
     <% if (role === 'Company') { %>
       <a href="/jobs/create-jobs">Create Jobs</a>
-      <a href="/jobs/list-job">Manage jobs</a>
+      <a href="/job-list">Manage jobs</a>
+      <a href="/jobApplicants">Manage applications</a>
+      
 
       
     <% } else if (role === 'candidates') { %>
-      <a href="/jobRoutes/job-list">Browse Jobs</a>
-      <a href="/job-applications">My Applications</a>
+      <a href="/list">Browse Jobs</a>
+    
+
+      <a href="/application/myApplication">My Applications</a>
+
+
+      <% } else if (role === 'admin') { %>
+        <a href="/admin-list">Browse Jobs</a>
+        
+      
+  
+        <a href="/Applicants">Manage applications</a>
+        
     <% } %>
     
     
@@ -107,5 +120,6 @@ body {
       <!-- <p>Browse available jobs or check your applications from the sidebar.</p> -->
     <% } %>
   </div>
+  
 </body>
 </html>
