@@ -1,8 +1,7 @@
 
 // Import the model with a different variable name to avoid conflicts
 const job = require("../models/job");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+
 require("dotenv").config();
 const User = require('../models/user'); // Adjust the path to your models directory
 
@@ -316,10 +315,7 @@ const update = async (req, res) => {
                 ]
             });
 
-            // Fetch all jobs after the update
-            // const jobs = await job.findAll(); // Admin can see all jobs
-
-            // After update, render the updated job list page
+          
             return res.render("jobs/admin-list", { jobs: jobs });
         } else {
             return res.status(405).json({ error: "Method not allowed" });
@@ -329,46 +325,6 @@ const update = async (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 };
-
-// const adminDeletejob = async (req, res) => {
-//     const { role } = req.user;
-
-//     // Allow only admins to access this resource
-//     if (role !== "admin") {
-//         return res.status(403).json({ error: "Access denied! Only admins can delete jobs." });
-//     }
-
-//     const { id } = req.params;
-
-//     try {
-//         // Fetch the job record by primary key
-//         const jobRecord = await job.findByPk(id);
-
-//         if (!jobRecord) {
-//             return res.status(404).json({ error: "Job not found!" });
-//         }
-
-//         // Delete the job record
-//         await jobRecord.destroy();
-
-//         // Fetch all jobs after deletion to render the updated list
-//         const jobs = await job.findAll({
-//             include: [
-//                 {
-//                     model: User,
-//                     attributes: ['companyName', 'address'], // Only the required fields
-//                 },
-//             ],
-//         });
-
-//         // After deletion, render the updated job list page
-//         return res.render("jobs/admin-list", { jobs:jobs });
-//     } catch (error) {
-//         console.error("Error during job deletion:", error);
-//         return res.status(500).json({ error: "Server error" });
-//     }
-// };
-
 const adminDeletejob = async (req, res) => {
     const { role } = req.user;
 
@@ -397,11 +353,6 @@ const adminDeletejob = async (req, res) => {
         return res.status(500).json({ error: "Server error" });
     }
 };
-
-
-
-
-
 const deleteJob = async (req, res) => {
     const { role } = req.user;
 
